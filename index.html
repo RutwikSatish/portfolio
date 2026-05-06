@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rutwik Satish — Analytics & Operations Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Fira+Code:wght@400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper:   #F5F0E8;
+  --paper2:  #EDE8DC;
+  --paper3:  #E4DED0;
+  --ink:     #1A1612;
+  --ink2:    #2E2820;
+  --accent:  #8B1A1A;
+  --accent2: #A82020;
+  --muted:   #7A7060;
+  --soft:    #9A8F80;
+  --border:  #D4CCBC;
+  --serif:   'Instrument Serif', Georgia, serif;
+  --mono:    'Fira Code', 'Courier New', monospace;
+  --sans:    'DM Sans', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+body::after {
+  content: '';
+  position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  opacity: .4;
+}
+
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
+
+/* NAV */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(245,240,232,.92); backdrop-filter: blur(8px);
+  border-bottom: 2px solid var(--ink); padding: .8rem 0;
+}
+.nav-inner { display: flex; align-items: center; justify-content: space-between; }
+.nav-wordmark { font-family: var(--serif); font-size: 1.05rem; color: var(--ink); font-style: italic; }
+.nav-links { display: flex; gap: 1.5rem; }
+.nav-links a { font-family: var(--mono); font-size: .62rem; color: var(--muted); text-decoration: none; letter-spacing: .08em; text-transform: uppercase; transition: color .2s; }
+.nav-links a:hover { color: var(--accent); }
+.btn-nav { background: var(--ink); color: var(--paper); font-family: var(--mono); font-size: .62rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: .4rem 1rem; text-decoration: none; transition: background .2s; }
+.btn-nav:hover { background: var(--ink2); }
+
+/* HERO */
+.hero { padding: 6rem 0 4rem; border-bottom: 1px solid var(--border); }
+.hero-kicker { font-family: var(--mono); font-size: .60rem; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); display: flex; align-items: center; gap: .5rem; margin-bottom: 1.4rem; }
+.hero-kicker::before { content: ''; display: block; width: 24px; height: 1px; background: var(--accent); }
+.hero-h1 { font-family: var(--serif); font-size: clamp(2.8rem, 5vw, 4.4rem); font-weight: 400; line-height: 1.08; color: var(--ink); letter-spacing: -.01em; margin-bottom: 1.2rem; }
+.hero-h1 em { font-style: italic; color: var(--accent); }
+.hero-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; margin-top: 2.5rem; }
+.hero-bio { font-size: .88rem; color: var(--muted); line-height: 1.75; border-left: 3px solid var(--border); padding-left: 1rem; }
+.hero-facts { display: flex; flex-direction: column; gap: .6rem; }
+.fact-row { display: flex; align-items: baseline; gap: .8rem; font-family: var(--mono); font-size: .70rem; }
+.fact-key { color: var(--muted); min-width: 100px; }
+.fact-val { color: var(--ink2); font-weight: 500; }
+
+/* RULE */
+.rule-divider { display: flex; align-items: center; gap: 1rem; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: .8rem 0; margin: 3rem 0; }
+.rule-divider span { font-family: var(--mono); font-size: .60rem; color: var(--muted); letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; }
+.rule-divider::before, .rule-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+/* PROJECTS */
+.projects-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 2rem; }
+.projects-title { font-family: var(--serif); font-size: 2rem; font-weight: 400; color: var(--ink); letter-spacing: -.01em; }
+.projects-count { font-family: var(--mono); font-size: .65rem; color: var(--muted); letter-spacing: .1em; }
+
+/* PROJECT ROW */
+.project-row {
+  display: grid; grid-template-columns: 80px 1fr auto;
+  gap: 2rem; align-items: start;
+  padding: 2rem 0; border-bottom: 1px solid var(--border);
+  text-decoration: none; color: inherit;
+  transition: background .15s;
+  position: relative;
+}
+.project-row:hover { background: var(--paper2); margin: 0 -1rem; padding-left: 1rem; padding-right: 1rem; }
+
+.proj-num { font-family: var(--mono); font-size: .60rem; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; padding-top: .3rem; }
+
+.proj-body {}
+.proj-badge { font-family: var(--mono); font-size: .58rem; letter-spacing: .1em; text-transform: uppercase; margin-bottom: .5rem; display: inline-block; }
+.badge-trade   { color: #1E4A8C; }
+.badge-risk    { color: #1A6B35; }
+.badge-pricing { color: #3730A3; }
+.badge-mrp     { color: #B5541C; }
+
+.proj-name { font-family: var(--serif); font-size: 1.55rem; font-weight: 400; color: var(--ink); margin-bottom: .3rem; letter-spacing: -.01em; }
+.proj-tagline { font-size: .85rem; color: var(--muted); margin-bottom: .8rem; }
+.proj-desc { font-size: .82rem; color: var(--ink2); line-height: 1.65; max-width: 560px; }
+
+.proj-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .8rem; }
+.proj-tag { font-family: var(--mono); font-size: .58rem; padding: 2px 8px; border: 1px solid var(--border); color: var(--muted); background: var(--paper2); }
+.proj-tag.accent { border-color: currentColor; }
+
+.proj-action { display: flex; flex-direction: column; gap: .5rem; align-items: flex-end; padding-top: .2rem; flex-shrink: 0; }
+.btn-view { font-family: var(--mono); font-size: .62rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: .5rem 1rem; text-decoration: none; transition: all .2s; display: inline-flex; align-items: center; gap: .4rem; }
+.btn-view.dark { background: var(--ink); color: var(--paper); }
+.btn-view.dark:hover { background: var(--ink2); }
+.btn-view.out { border: 1.5px solid var(--ink); color: var(--ink); }
+.btn-view.out:hover { background: var(--ink); color: var(--paper); }
+
+.verdict-pill { font-family: var(--mono); font-size: .56rem; letter-spacing: .08em; text-transform: uppercase; padding: 3px 10px; }
+.verdict-valid { background: rgba(22,128,60,.1); color: #16803C; border: 1px solid rgba(22,128,60,.25); }
+.verdict-synth { background: rgba(146,97,10,.1); color: #92610A; border: 1px solid rgba(146,97,10,.25); }
+
+/* SKILLS */
+.skills { padding: 4rem 0; border-top: 1px solid var(--border); }
+.skills-title { font-family: var(--serif); font-size: 2rem; font-weight: 400; color: var(--ink); margin-bottom: 2rem; }
+
+.skill-table { width: 100%; border-collapse: collapse; }
+.skill-table td { padding: .7rem .5rem; border-bottom: 1px solid var(--border); font-size: .83rem; vertical-align: top; }
+.skill-table td:first-child { font-family: var(--mono); font-size: .65rem; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; width: 180px; padding-right: 2rem; }
+.skill-table td:last-child { color: var(--ink2); }
+
+/* CONTACT */
+.contact { padding: 4rem 0; border-top: 2px solid var(--ink); }
+.contact-inner { display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: start; }
+.contact-h { font-family: var(--serif); font-size: 2.2rem; font-weight: 400; color: var(--ink); line-height: 1.15; margin-bottom: .8rem; }
+.contact-h em { font-style: italic; color: var(--accent); }
+.contact-sub { font-size: .88rem; color: var(--muted); max-width: 420px; line-height: 1.7; }
+
+.contact-links { display: flex; flex-direction: column; gap: .5rem; }
+.c-link { font-family: var(--mono); font-size: .68rem; letter-spacing: .06em; color: var(--muted); text-decoration: none; border: 1px solid var(--border); padding: .45rem .9rem; display: flex; align-items: center; gap: .6rem; transition: all .2s; white-space: nowrap; }
+.c-link:hover { border-color: var(--ink); color: var(--ink); }
+
+footer { border-top: 1px solid var(--border); padding: 1.2rem 0; font-family: var(--mono); font-size: .58rem; color: var(--soft); }
+footer .wrap { display: flex; justify-content: space-between; }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.fade-up { animation: fadeUp .65s ease both; }
+.d1{animation-delay:.08s} .d2{animation-delay:.16s} .d3{animation-delay:.24s}
+
+@media (max-width: 760px) {
+  .hero-meta { grid-template-columns: 1fr; }
+  .project-row { grid-template-columns: 1fr; }
+  .proj-num { display: none; }
+  .proj-action { flex-direction: row; align-items: center; }
+  .contact-inner { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-inner">
+    <span class="nav-wordmark">Rutwik Satish</span>
+    <div class="nav-links">
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="mailto:satish.rutwik@gmail.com" class="btn-nav">Get in Touch</a>
+  </div>
+</nav>
+
+<section class="wrap hero">
+  <div class="hero-kicker fade-up">Analytics · Operations · Engineering Management</div>
+  <h1 class="hero-h1 fade-up d1">
+    I build tools that turn<br>operational data into <em>decisions.</em>
+  </h1>
+  <div class="hero-meta fade-up d2">
+    <div class="hero-bio">
+      MS Engineering Management at Northeastern University. I started on factory floors —
+      timing cycle times, casting specimens, running simulations on live production data.
+      My graduate work builds the digital analytics layer on top of that operational foundation:
+      supply chain, pricing operations, and risk intelligence tools that turn real business problems into decisions.
+    </div>
+    <div class="hero-facts">
+      <div class="fact-row"><span class="fact-key">Degree</span><span class="fact-val">MS Engineering Management</span></div>
+      <div class="fact-row"><span class="fact-key">University</span><span class="fact-val">Northeastern University</span></div>
+      <div class="fact-row"><span class="fact-key">Graduating</span><span class="fact-val">May 2026</span></div>
+      <div class="fact-row"><span class="fact-key">Visa</span><span class="fact-val">STEM OPT · 36 months</span></div>
+      <div class="fact-row"><span class="fact-key">Focus</span><span class="fact-val">Business Analytics · SC · Pricing</span></div>
+      <div class="fact-row"><span class="fact-key">Stack</span><span class="fact-val">Python · Streamlit · Plotly · Groq</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="rule-divider"><span>6 Projects · Factory Floor to Analytics Tooling · 2022–2025</span></div>
+</div>
+
+<section class="wrap" id="projects" style="padding-bottom:4rem">
+  <div class="projects-header">
+    <h2 class="projects-title">Projects</h2>
+    <span class="projects-count">06 Projects · 2022–2025</span>
+  </div>
+
+  <!-- PROJECT 1 — TARIFFGUARD -->
+  <a href="tariffguard.html" class="project-row fade-up">
+    <div class="proj-num">01 / 06</div>
+    <div class="proj-body">
+      <div class="proj-badge badge-trade">Trade Analytics</div>
+      <div class="proj-name">TariffGuard</div>
+      <div class="proj-tagline">Tariff Exposure & Supplier Shift Simulator</div>
+      <div class="proj-desc">
+        Quantifies the full cost of the 2025 US tariff escalation per product and country, then models three strategic responses — Absorb, Pass-Through, Supplier Switch — with the transition cost math every other tool ignores: PPAP re-qualification + bridge inventory. Tested with real data by a supply chain engineer at Calix. Also deployed to the CEO of Ativegh Logistics Pvt Ltd (Haldia Port operations).
+      </div>
+      <div class="proj-tags">
+        <span class="proj-tag">Python</span>
+        <span class="proj-tag">Streamlit</span>
+        <span class="proj-tag">Plotly</span>
+        <span class="proj-tag">Groq · Llama 3.1</span>
+        <span class="proj-tag">2025 USTR Tariff Schedule</span>
+        <span class="proj-tag">PPAP Qualification</span>
+      </div>
+    </div>
+    <div class="proj-action">
+      <span class="verdict-pill verdict-valid">✓ Framework Valid</span>
+      <span class="verdict-pill" style="background:rgba(26,107,53,.1);color:#1a6b35;border:1px solid rgba(26,107,53,.25);font-family:var(--mono);font-size:.56rem;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;">✓ Real-World Tested</span>
+      <a href="tariffguard.html" class="btn-view dark">View Project →</a>
+    </div>
+  </a>
+
+  <!-- PROJECT 2 — SUPPLYIQ -->
+  <a href="supplyiq.html" class="project-row">
+    <div class="proj-num">02 / 06</div>
+    <div class="proj-body">
+      <div class="proj-badge badge-risk">Risk Intelligence</div>
+      <div class="proj-name">SupplyIQ</div>
+      <div class="proj-tagline">Supply Chain Risk Intelligence Platform</div>
+      <div class="proj-desc">
+        Scores each supplier 0–100 across four leading KPIs — on-time delivery, defect rate, inventory coverage, lead time variance — and classifies them as Stable / At Risk / Critical. Single-source suppliers receive a risk premium. AI brief generates the root-cause analysis a senior analyst writes manually, in 30 seconds. Based on Aberdeen Research's $260K/hr production stoppage benchmark.
+      </div>
+      <div class="proj-tags">
+        <span class="proj-tag">Python</span>
+        <span class="proj-tag">Streamlit</span>
+        <span class="proj-tag">Plotly</span>
+        <span class="proj-tag">Groq · Llama 3.1</span>
+        <span class="proj-tag">Aberdeen Research</span>
+        <span class="proj-tag">SCAR Workflow</span>
+      </div>
+    </div>
+    <div class="proj-action">
+      <span class="verdict-pill verdict-valid">✓ Framework Valid</span>
+      <span class="verdict-pill verdict-synth">⚠ Synthetic Demo</span>
+      <a href="supplyiq.html" class="btn-view dark">View Project →</a>
+    </div>
+  </a>
+
+  <!-- PROJECT 3 — PRICEOPS -->
+  <a href="priceops.html" class="project-row">
+    <div class="proj-num">03 / 06</div>
+    <div class="proj-body">
+      <div class="proj-badge badge-pricing">Pricing Operations</div>
+      <div class="proj-name">PriceOps</div>
+      <div class="proj-tagline">Pricing & CPQ Operations Platform</div>
+      <div class="proj-desc">
+        Full Configure-Price-Quote lifecycle: CPQ configurator with partner tier logic, live policy compliance checking, a built-in UAT Validator with 8 structured test cases across 5 business units (mirrors SAP/Salesforce CPQ testing), quote pipeline management, and a SOX-ready pricing change audit trail. Most enterprise-ready of the four projects.
+      </div>
+      <div class="proj-tags">
+        <span class="proj-tag">Python</span>
+        <span class="proj-tag">Streamlit</span>
+        <span class="proj-tag">Plotly</span>
+        <span class="proj-tag">Salesforce CPQ</span>
+        <span class="proj-tag">SAP Pricing</span>
+        <span class="proj-tag">UAT Testing</span>
+        <span class="proj-tag">Audit Compliance</span>
+      </div>
+    </div>
+    <div class="proj-action">
+      <span class="verdict-pill verdict-valid">✓ Framework Valid</span>
+      <span class="verdict-pill verdict-synth">⚠ Synthetic Demo</span>
+      <a href="priceops.html" class="btn-view dark">View Project →</a>
+    </div>
+  </a>
+
+  <!-- PROJECT 4 — FACTORYSYNC -->
+  <a href="factorysync.html" class="project-row">
+    <div class="proj-num">04 / 06</div>
+    <div class="proj-body">
+      <div class="proj-badge badge-mrp">MRP · Operations</div>
+      <div class="proj-name">FactorySync</div>
+      <div class="proj-tagline">MRP Lot Sizing Optimizer</div>
+      <div class="proj-desc">
+        Computes the complete MRP record for all six standard lot sizing methods from Jacobs, Berry, Whybark & Vollmann (2011): Lot-for-Lot, EOQ, POQ, Part Period Balancing, Silver-Meal, and Wagner-Whitin dynamic programming. Shows exact ordering + holding cost per method so planners can stop guessing. Strongest academic grounding of the four projects — no synthetic data, user inputs their own demand series.
+      </div>
+      <div class="proj-tags">
+        <span class="proj-tag">Python</span>
+        <span class="proj-tag">Streamlit</span>
+        <span class="proj-tag">Pandas</span>
+        <span class="proj-tag">Wagner-Whitin 1958</span>
+        <span class="proj-tag">Silver-Meal 1973</span>
+        <span class="proj-tag">Jacobs & Berry 2011</span>
+      </div>
+    </div>
+    <div class="proj-action">
+      <span class="verdict-pill verdict-valid">✓ Framework Valid</span>
+      <span class="verdict-pill" style="background:rgba(22,128,60,.1);color:#16803C;border:1px solid rgba(22,128,60,.25);font-family:var(--mono);font-size:.56rem;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;">✓ No Synthetic Data</span>
+      <a href="factorysync.html" class="btn-view dark">View Project →</a>
+    </div>
+  </a>
+
+  <!-- PROJECT 5 — PRODUCTION THROUGHPUT -->
+  <a href="throughput.html" class="project-row">
+    <div class="proj-num">05 / 06</div>
+    <div class="proj-body">
+      <div class="proj-badge badge-mrp">Undergraduate · 2021–22 · Bengaluru</div>
+      <div class="proj-name">Production Throughput Optimization</div>
+      <div class="proj-tagline">Chocolate Factory · VSM · Arena Simulation · AutoCAD</div>
+      <div class="proj-desc">
+        Visited a live chocolate manufacturing facility. Walked 8 production stations, collected cycle time data by hand, and mapped the full value stream. Built an Arena discrete-event simulation calibrated to the measured baseline of 90 units per shift. Scenario analysis identified a +22.5% throughput gain by repositioning one workstation, adding 6 products per shift across 3 machine sets at zero capital spend. No disruption to live production at any stage.
+      </div>
+      <div class="proj-tags">
+        <span class="proj-tag">Arena Simulation</span>
+        <span class="proj-tag">VSM</span>
+        <span class="proj-tag">AutoCAD</span>
+        <span class="proj-tag">Cycle Time Analysis</span>
+        <span class="proj-tag">Process Rebalancing</span>
+        <span class="proj-tag">Live Production Data</span>
+      </div>
+    </div>
+    <div class="proj-action">
+      <span class="verdict-pill verdict-valid">✓ Real Floor Data</span>
+      <span class="verdict-pill" style="background:rgba(22,128,60,.1);color:#16803C;border:1px solid rgba(22,128,60,.25);font-family:var(--mono);font-size:.56rem;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;">+22% Throughput</span>
+      <a href="throughput.html" class="btn-view dark">View Project →</a>
+    </div>
+  </a>
+
+  <!-- PROJECT 6 — AL7075 COMPOSITE -->
+  <a href="al7075.html" class="project-row">
+    <div class="proj-num">06 / 06</div>
+    <div class="proj-body">
+      <div class="proj-badge badge-mrp">Undergraduate · 2022–2023 · Bengaluru</div>
+      <div class="proj-name">Al7075 Composite Fabrication & Wear Study</div>
+      <div class="proj-tagline">Stir Casting · ANOVA · Regression · R²=0.96</div>
+      <div class="proj-desc">
+        Fabricated 12 Al7075 composite specimens through a full production sequence — material preparation, stir casting in a 6kW furnace, heat treatment, and machining to test dimensions. Every process parameter selected and justified before execution. ANOVA and regression (R² = 0.96) identified the optimal composition. The analytical methods used across all graduate projects were first learned here — on physical specimens, in a real fabrication environment.
+      </div>
+      <div class="proj-tags">
+        <span class="proj-tag">Stir Casting</span>
+        <span class="proj-tag">Heat Treatment</span>
+        <span class="proj-tag">ANOVA</span>
+        <span class="proj-tag">Regression · R²=0.96</span>
+        <span class="proj-tag">Design of Experiments</span>
+        <span class="proj-tag">Wear Testing</span>
+      </div>
+    </div>
+    <div class="proj-action">
+      <span class="verdict-pill verdict-valid">✓ Physical Lab Data</span>
+      <span class="verdict-pill" style="background:rgba(22,128,60,.1);color:#16803C;border:1px solid rgba(22,128,60,.25);font-family:var(--mono);font-size:.56rem;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;">R² = 0.96</span>
+      <a href="al7075.html" class="btn-view dark">View Project →</a>
+    </div>
+  </a>
+</section>
+
+<section class="wrap skills" id="skills">
+  <h2 class="skills-title">Core Skills</h2>
+  <table class="skill-table">
+    <tr>
+      <td>Analytics Engineering</td>
+      <td>Python, Pandas, Plotly — end-to-end from raw data to production dashboards and decision tools</td>
+    </tr>
+    <tr>
+      <td>Manufacturing Operations</td>
+      <td>VSM, Arena simulation, cycle time analysis, process rebalancing, stir casting, ANOVA, DoE</td>
+    </tr>
+    <tr>
+      <td>Supply Chain</td>
+      <td>MRP lot sizing, tariff modeling, supplier risk scoring, PPAP qualification, inventory math</td>
+    </tr>
+    <tr>
+      <td>Pricing & CPQ</td>
+      <td>Partner discount tiers, margin floor enforcement, UAT validation, audit trails, channel ops</td>
+    </tr>
+    <tr>
+      <td>Operations Research</td>
+      <td>Decision models, scenario analysis, break-even calculations, transition cost math, dynamic programming</td>
+    </tr>
+    <tr>
+      <td>AI Integration</td>
+      <td>Groq · Llama 3.1 — structured AI briefs with specific $ impact, owner, and escalation threshold</td>
+    </tr>
+  </table>
+</section>
+
+<section class="wrap contact" id="contact">
+  <div class="contact-inner">
+    <div>
+      <h2 class="contact-h">Let's talk<br><em>analytics & operations.</em></h2>
+      <p class="contact-sub">Looking for roles in business analytics, supply chain operations, or pricing strategy where quantitative tools drive real decisions. STEM OPT — 36 months work authorization.</p>
+    </div>
+    <div class="contact-links">
+      <a href="mailto:satish.rutwik@gmail.com" class="c-link">✉ satish.rutwik@gmail.com</a>
+      <a href="https://linkedin.com/in/rutwiksatish" target="_blank" class="c-link">in linkedin.com/in/rutwiksatish</a>
+      <a href="https://github.com/rutwiksatish" target="_blank" class="c-link">⎇ github.com/rutwiksatish</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>Rutwik Satish · MS Engineering Management · Northeastern University · 2025</span>
+    <span>4 Projects · Python · Streamlit · Plotly · Groq</span>
+  </div>
+</footer>
+
+</body>
+</html>
