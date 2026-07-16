@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rutwik Satish | Analytics and Operations Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;900&family=Azeret+Mono:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:     #080C14; --bg1: #0D1220; --bg2: #121828; --bg3: #182030;
+  --border: #1E2A3C; --border2: #243244;
+  --text:   #D8E2F0; --muted: #5A6B84; --dim: #344050; --white: #EEF3FC;
+  --cyan:   #3EC9E0; --amber: #F5A623; --green: #2ECC85; --red: #E05555;
+  --violet: #8B72E8; --teal: #0FC2A2; --sky: #5BB8F5;
+  --display:'Unbounded',sans-serif; --mono:'Azeret Mono',monospace; --body:'DM Sans',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:15px;line-height:1.6;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
+  background-size:64px 64px;opacity:.18}
+.hero-glow{position:absolute;width:900px;height:600px;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(62,201,224,.07) 0%,transparent 70%);
+  top:-200px;left:50%;transform:translateX(-50%);pointer-events:none;z-index:0}
+.wrap{max-width:1160px;margin:0 auto;padding:0 2.5rem;position:relative;z-index:1}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(8,12,20,.88);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);padding:.9rem 0}
+.nav-inner{display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:.75rem;text-decoration:none}
+.nav-monogram{width:34px;height:34px;background:var(--cyan);display:flex;align-items:center;justify-content:center;
+  font-family:var(--display);font-size:.65rem;font-weight:700;color:var(--bg);letter-spacing:-.02em;flex-shrink:0}
+.nav-name{font-family:var(--display);font-size:.8rem;font-weight:600;color:var(--white);letter-spacing:-.02em}
+.nav-sub{font-family:var(--mono);font-size:.6rem;color:var(--muted);letter-spacing:.06em}
+.nav-links{display:flex;gap:2rem}
+.nav-links a{font-family:var(--mono);font-size:.65rem;color:var(--muted);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--cyan)}
+
+/* HERO */
+.hero{padding:7rem 0 5rem;position:relative;overflow:hidden}
+.hero-inner{display:grid;grid-template-columns:1fr 420px;gap:4rem;align-items:center}
+.hero-kicker{font-family:var(--mono);font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);
+  display:flex;align-items:center;gap:.75rem;margin-bottom:1.4rem}
+.hero-kicker::before{content:'';display:block;width:32px;height:1px;background:var(--cyan)}
+.hero-h1{font-family:var(--display);font-size:clamp(2.6rem,4.5vw,4rem);font-weight:900;line-height:1.02;
+  letter-spacing:-.04em;color:var(--white);margin-bottom:1.4rem}
+.hero-h1 .accent{color:var(--cyan);display:block}
+.hero-bio{font-size:.92rem;color:var(--muted);line-height:1.8;max-width:500px;margin-bottom:2rem}
+.hero-bio strong{color:var(--text);font-weight:500}
+.hero-pills{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2.5rem}
+.pill{font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;
+  padding:.35rem .85rem;border-radius:2px;border:1px solid var(--border2);color:var(--muted)}
+.pill.hi{border-color:rgba(62,201,224,.35);color:var(--cyan)}
+.hero-ctas{display:flex;gap:.75rem;flex-wrap:wrap}
+.btn-cta{font-family:var(--mono);font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  text-decoration:none;padding:.7rem 1.5rem;transition:all .2s;display:inline-flex;align-items:center;gap:.5rem}
+.btn-cta.primary{background:var(--cyan);color:var(--bg)}
+.btn-cta.primary:hover{background:#5ad5e8}
+.btn-cta.outline{border:1px solid var(--border2);color:var(--muted)}
+.btn-cta.outline:hover{border-color:var(--cyan);color:var(--cyan)}
+
+/* STATS TERMINAL */
+.stats-terminal{background:var(--bg1);border:1px solid var(--border);position:relative;overflow:hidden}
+.stats-terminal::before{content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(62,201,224,.05) 0%,transparent 60%);pointer-events:none}
+.st-bar{background:var(--bg3);border-bottom:1px solid var(--border);padding:.6rem 1rem;
+  display:flex;align-items:center;gap:.5rem}
+.st-dot{width:8px;height:8px;border-radius:50%}
+.st-dot.r{background:#E05555}.st-dot.y{background:#F5A623}.st-dot.g{background:#2ECC85}
+.st-label{font-family:var(--mono);font-size:.58rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin:0 auto}
+.st-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border)}
+.st-cell{background:var(--bg1);padding:1.2rem 1.1rem}
+.st-val{font-family:var(--display);font-size:2rem;font-weight:900;color:var(--cyan);line-height:1;margin-bottom:.3rem}
+.st-val.amber{color:var(--amber)}.st-val.green{color:var(--green)}.st-val.violet{color:var(--violet)}
+.st-key{font-family:var(--mono);font-size:.58rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+
+/* SECTION HEADERS */
+.section-rule{display:flex;align-items:center;gap:1.2rem;margin-bottom:2.5rem}
+.section-rule::after{content:'';flex:1;height:1px;background:var(--border)}
+.section-label{font-family:var(--mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan)}
+.section-count{font-family:var(--mono);font-size:.6rem;color:var(--dim);letter-spacing:.08em}
+.subsection-label{font-family:var(--mono);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);
+  display:flex;align-items:center;gap:.75rem;margin:3rem 0 1.5rem}
+.subsection-label::after{content:'';flex:1;height:1px;background:var(--border);opacity:.5}
+
+/* PROJECT CARDS */
+.cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
+.cards-grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border)}
+.card{background:var(--bg1);position:relative;overflow:hidden;display:flex;flex-direction:column;
+  text-decoration:none;color:inherit;transition:background .2s,transform .2s}
+.card:hover{background:var(--bg2);transform:translateY(-2px);z-index:2}
+.card:hover .card-arrow{opacity:1;transform:translateX(0)}
+.card-accent-bar{height:2px;width:100%;flex-shrink:0}
+.card-body{padding:1.5rem;flex:1;display:flex;flex-direction:column}
+.card-num{font-family:var(--mono);font-size:.58rem;color:var(--dim);letter-spacing:.12em;margin-bottom:.7rem}
+.card-badge{font-family:var(--mono);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.6rem;display:inline-block}
+.card-name{font-family:var(--display);font-size:1.15rem;font-weight:700;color:var(--white);
+  letter-spacing:-.02em;margin-bottom:.3rem;line-height:1.15}
+.card-tagline{font-family:var(--mono);font-size:.62rem;color:var(--muted);margin-bottom:.8rem;letter-spacing:.04em}
+.card-desc{font-size:.8rem;color:var(--muted);line-height:1.65;flex:1;margin-bottom:1rem}
+.card-tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:1rem}
+.card-tag{font-family:var(--mono);font-size:.55rem;letter-spacing:.06em;padding:2px 7px;
+  background:var(--bg3);border:1px solid var(--border);color:var(--dim)}
+.card-footer{padding:.75rem 1.5rem;border-top:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;background:var(--bg)}
+.card-verdict{font-family:var(--mono);font-size:.55rem;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px}
+.cv-valid{background:rgba(46,204,133,.1);color:var(--green);border:1px solid rgba(46,204,133,.2)}
+.cv-real{background:rgba(46,204,133,.15);color:var(--green);border:1px solid rgba(46,204,133,.3)}
+.cv-synth{background:rgba(245,166,35,.08);color:var(--amber);border:1px solid rgba(245,166,35,.2)}
+.cv-cite{background:rgba(62,201,224,.08);color:var(--cyan);border:1px solid rgba(62,201,224,.2)}
+.card-arrow{font-family:var(--mono);font-size:.62rem;color:var(--cyan);opacity:0;
+  transform:translateX(-4px);transition:opacity .2s,transform .2s}
+.ab-trade{background:var(--sky)}.ab-process{background:var(--teal)}.ab-pricing{background:var(--violet)}
+.ab-risk{background:var(--green)}.ab-or{background:var(--amber)}.ab-mrp{background:#F59E0B}
+.ab-mfg{background:#E07840}.ab-lab{background:#9B9BB0}
+.bc-trade{color:var(--sky)}.bc-process{color:var(--teal)}.bc-pricing{color:var(--violet)}
+.bc-risk{color:var(--green)}.bc-or{color:var(--amber)}.bc-mrp{color:#F59E0B}
+.bc-mfg{color:#E07840}.bc-lab{color:#9B9BB0}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
+.skill-cell{background:var(--bg1);padding:1.6rem;transition:background .2s}
+.skill-cell:hover{background:var(--bg2)}
+.skill-icon{font-size:1.3rem;margin-bottom:.75rem}
+.skill-name{font-family:var(--display);font-size:.82rem;font-weight:600;color:var(--white);letter-spacing:-.01em;margin-bottom:.5rem}
+.skill-desc{font-family:var(--mono);font-size:.62rem;color:var(--muted);line-height:1.65;letter-spacing:.02em}
+
+/* CONTACT */
+.contact-block{border:1px solid var(--border);background:var(--bg1);padding:3.5rem;
+  display:grid;grid-template-columns:1fr auto;gap:3rem;align-items:center;position:relative;overflow:hidden}
+.contact-block::before{content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(62,201,224,.04) 0%,transparent 50%);pointer-events:none}
+.contact-eyebrow{font-family:var(--mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--cyan);margin-bottom:1rem;display:flex;align-items:center;gap:.75rem}
+.contact-eyebrow::before{content:'';display:block;width:24px;height:1px;background:var(--cyan)}
+.contact-h{font-family:var(--display);font-size:1.8rem;font-weight:700;color:var(--white);
+  letter-spacing:-.03em;line-height:1.1;margin-bottom:.8rem}
+.contact-sub{font-size:.88rem;color:var(--muted);max-width:460px;line-height:1.75}
+.contact-links{display:flex;flex-direction:column;gap:.6rem;flex-shrink:0}
+.contact-link{font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;color:var(--text);
+  text-decoration:none;display:flex;align-items:center;gap:.7rem;padding:.65rem 1.1rem;
+  border:1px solid var(--border2);background:var(--bg3);transition:border-color .2s,color .2s;white-space:nowrap}
+.contact-link:hover{border-color:var(--cyan);color:var(--cyan)}
+.contact-link svg{fill:currentColor;flex-shrink:0}
+
+footer{border-top:1px solid var(--border);padding:1.5rem 0;font-family:var(--mono);font-size:.58rem;color:var(--dim)}
+.footer-inner{display:flex;justify-content:space-between;align-items:center}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.fu{opacity:0;animation:fadeUp .7s ease both}
+.d1{animation-delay:.08s}.d2{animation-delay:.16s}.d3{animation-delay:.24s}
+.d4{animation-delay:.34s}.d5{animation-delay:.44s}
+.card-reveal{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease}
+.card-reveal.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:1000px){.cards-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:780px){
+  .hero-inner{grid-template-columns:1fr}
+  .stats-terminal{display:none}
+  .cards-grid,.cards-grid-2{grid-template-columns:1fr}
+  .skills-grid{grid-template-columns:repeat(2,1fr)}
+  .contact-block{grid-template-columns:1fr;padding:2rem}
+  .contact-links{flex-direction:row;flex-wrap:wrap}
+  .nav-links{display:none}
+  .wrap{padding:0 1.25rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-inner">
+    <a href="https://rutwiksatish.github.io/portfolio/" class="nav-logo">
+      <div class="nav-monogram">RS</div>
+      <div>
+        <div class="nav-name">Rutwik Satish</div>
+        <div class="nav-sub">Analytics &amp; Operations</div>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="wrap">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-kicker fu">MS Engineering Management, Northeastern</div>
+        <h1 class="hero-h1 fu d1">
+          I turn operational<br>problems into
+          <span class="accent">decisions.</span>
+        </h1>
+        <p class="hero-bio fu d2">
+          <strong>Business analytics, supply chain, and pricing operations.</strong>[cite: 1]
+          Started on factory floors collecting cycle time data by hand.[cite: 1]
+          Now building the analytical tools that operationalize that same thinking.[cite: 1]
+          8 projects. Real-world validated. All frameworks cited.[cite: 1]
+        </p>
+        <div class="hero-pills fu d3">
+          <span class="pill hi">Business Analytics</span>[cite: 1]
+          <span class="pill hi">Supply Chain</span>[cite: 1]
+          <span class="pill">Pricing Operations</span>[cite: 1]
+          <span class="pill">Operations Research</span>[cite: 1]
+          <span class="pill">Python · Streamlit</span>[cite: 1]
+        </div>
+        <div class="hero-ctas fu d4">
+          <a href="#projects" class="btn-cta primary">View Projects</a>
+          <a href="#contact" class="btn-cta outline">Get in Touch</a>
+        </div>
+      </div>
+
+      <div class="stats-terminal fu d5">
+        <div class="st-bar">
+          <div class="st-dot r"></div><div class="st-dot y"></div><div class="st-dot g"></div>
+          <span class="st-label">portfolio.stats</span>
+        </div>
+        <div class="st-grid">
+          <div class="st-cell"><div class="st-val" id="s1">8</div><div class="st-key">Projects Built</div></div>[cite: 1]
+          <div class="st-cell"><div class="st-val amber" id="s2">1</div><div class="st-key">Real-World Tested</div></div>[cite: 1]
+          <div class="st-cell"><div class="st-val green" id="s3">3.67</div><div class="st-key">GPA / 4.0</div></div>
+          <div class="st-cell"><div class="st-val violet">8+</div><div class="st-key">Cited References</div></div>[cite: 1]
+          <div class="st-cell"><div class="st-val">0.96</div><div class="st-key">R² Lab Specimens</div></div>[cite: 1]
+          <div class="st-cell"><div class="st-val amber">+22%</div><div class="st-key">Factory Throughput</div></div>[cite: 1]
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" style="padding:0 0 5rem">
+  <div class="wrap">
+    <div class="section-rule">
+      <span class="section-label">Projects</span>
+      <span class="section-count">08 total · 2021-2025</span>[cite: 1]
+    </div>
+
+    <div class="subsection-label">Graduate Analytics Tools</div>[cite: 1]
+
+    <div class="cards-grid">
+
+      <a href="https://tariffguard.streamlit.app" target="_blank" class="card card-reveal">
+        <div class="card-accent-bar ab-trade"></div>
+        <div class="card-body">
+          <div class="card-num">01 / 08</div>[cite: 1]
+          <div class="card-badge bc-trade">Trade Analytics</div>[cite: 1]
+          <div class="card-name">TariffGuard</div>[cite: 1]
+          <div class="card-tagline">Tariff Exposure and Supplier Shift Simulator</div>[cite: 1]
+          <div class="card-desc">Models three strategic responses to the 2025 US tariff escalation with the transition cost that others ignore: PPAP re-qualification plus bridge inventory. Tested with real data by an engineer at Calix. Deployed to the CEO of Ativegh Logistics.</div>[cite: 1]
+          <div class="card-tags">
+            <span class="card-tag">Python</span><span class="card-tag">Streamlit</span>[cite: 1]
+            <span class="card-tag">Groq AI</span><span class="card-tag">USTR 2025</span><span class="card-tag">PPAP</span>[cite: 1]
+          </div>
+        </div>
+        <div class="card-footer">
+          <div style="display:flex;gap:.4rem">
+            <span class="card-verdict cv-valid">Framework Valid</span>[cite: 1]
+            <span class="card-verdict cv-real">Real-World Tested</span>[cite: 1]
+          </div>
+          <span class="card-arrow">View</span>
+        </div>
+      </a>
+
+      <a href="https://processgap.streamlit.app" target="_blank" class="card card-reveal">
+        <div class="card-accent-bar ab-process"></div>
+        <div class="card-body">
+          <div class="card-num">02 / 08</div>[cite: 1]
+          <div class="card-badge bc-process">Business Process</div>[cite: 1]
+          <div class="card-name">ProcessGap</div>[cite: 1]
+          <div class="card-tagline">VSM + Six Sigma DMAIC Analysis Tool</div>[cite: 1]
+          <div class="card-desc">Classifies process steps as VA/NNVA/NVA, detects the binding constraint via Little's Law, and quantifies annual waste cost in dollars. Positioned against Celonis at $80K-$500K. First result in 10 minutes.</div>[cite: 1]
+          <div class="card-tags">
+            <span class="card-tag">VSM</span><span class="card-tag">Little's Law</span>[cite: 1]
+            <span class="card-tag">Six Sigma</span><span class="card-tag">DMAIC</span><span class="card-tag">Groq AI</span>[cite: 1]
+          </div>
+        </div>
+        <div class="card-footer">
+          <div style="display:flex;gap:.4rem">
+            <span class="card-verdict cv-valid">Framework Valid</span>[cite: 1]
+            <span class="card-verdict cv-synth">Synthetic Demo</span>[cite: 1]
+          </div>
+          <span class="card-arrow">View</span>
+        </div>
+      </a>
+
+      <a href="https://priceops.streamlit.app" target="_blank" class="card card-reveal">
+        <div class="card-accent-bar ab-pricing"></div>
+        <div class="card-body">
+          <div class="card-num">03 / 08</div>[cite: 1]
+          <div class="card-badge bc-pricing">Pricing Operations</div>[cite: 1]
+          <div class="card-name">PriceOps</div>[cite: 1]
+          <div class="card-tagline">CPQ Operations Platform</div>[cite: 1]
+          <div class="card-desc">Full CPQ lifecycle: tier-based discount engine, live policy compliance gate, an 8-test UAT validator across 5 business units that mirrors SAP/Salesforce CPQ testing, and a SOX-ready pricing audit trail.</div>[cite: 1]
+          <div class="card-tags">
+            <span class="card-tag">CPQ</span><span class="card-tag">UAT Testing</span>[cite: 1]
+            <span class="card-tag">SAP Pricing</span><span class="card-tag">Audit Trail</span>[cite: 1]
+          </div>
+        </div>
+        <div class="card-footer">
+          <div style="display:flex;gap:.4rem">
+            <span class="card-verdict cv-valid">Framework Valid</span>[cite: 1]
+            <span class="card-verdict cv-synth">Synthetic Demo</span>[cite: 1]
+          </div>
+          <span class="card-arrow">View</span>
+        </div>
+      </a>
+
+      <a href="https://supplyiq.streamlit.app" target="_blank" class="card card-reveal">
+        <div class="card-accent-bar ab-risk"></div>
+        <div class="card-body">
+          <div class="card-num">04 / 08</div>[cite: 1]
+          <div class="card-badge bc-risk">Risk Intelligence</div>[cite: 1]
+          <div class="card-name">SupplyIQ</div>[cite: 1]
+          <div class="card-tagline">Supply Chain Risk Intelligence Platform</div>[cite: 1]
+          <div class="card-desc">Scores each supplier 0-100 across four leading KPIs and flags Critical suppliers 2-3 weeks before a production stoppage event. AI brief delivers root-cause analysis in 30 seconds. Based on Aberdeen Research's $260K/hr benchmark.</div>[cite: 1]
+          <div class="card-tags">
+            <span class="card-tag">Python</span><span class="card-tag">Streamlit</span>[cite: 1]
+            <span class="card-tag">Groq AI</span><span class="card-tag">SCAR</span>[cite: 1]
+          </div>
+        </div>
+        <div class="card-footer">
+          <div style="display:flex;gap:.4rem">
+            <span class="card-verdict cv-valid">Framework Valid</span>[cite: 1]
+            <span class="card-verdict cv-synth">Synthetic Demo</span>[cite: 1]
+          </div>
+          <span class="card-arrow">View</span>
+        </div>
+      </a>
+
+      <a href="https://shiftiq.streamlit.app" target="_blank" class="card card-reveal">
+        <div class="card-accent-bar ab-or"></div>
+        <div class="card-body">
+          <div class="card-num">05 / 08</div>[cite: 1]
+          <div class="card-badge bc-or">Operations Research</div>[cite: 1]
+          <div class="card-name">ShiftIQ</div>[cite: 1]
+          <div class="card-tagline">Workforce Shift Scheduling Optimizer</div>[cite: 1]
+          <div class="card-desc">Implements the Dantzig (1954) set-covering MILP via HiGHS solver to minimize shift schedule cost. Post-solve constraint validation checks coverage for all 7 days explicitly. 8 cited academic references.</div>[cite: 1]
+          <div class="card-tags">
+            <span class="card-tag">MILP</span><span class="card-tag">HiGHS</span>[cite: 1]
+            <span class="card-tag">Dantzig 1954</span><span class="card-tag">ISO 22400-2</span>[cite: 1]
+          </div>
+        </div>
+        <div class="card-footer">
+          <div style="display:flex;gap:.4rem">
+            <span class="card-verdict cv-valid">Framework Valid</span>[cite: 1]
+            <span class="card-verdict cv-cite">8 References</span>[cite: 1]
+          </div>
+          <span class="card-arrow">View</span>
+        </div>
+      </a>
+
+      <a href="https://factorysync.streamlit.app" target="_blank" class="card card-reveal">
+        <div class="card-accent-bar ab-mrp"></div>
+        <div class="card-body">
+          <div class="card-num">06 / 08</div>[cite: 1]
+          <div class="card-badge bc-mrp">MRP · Operations</div>[cite: 1]
+          <div class="card-name">FactorySync</div>[cite: 1]
+          <div class="card-tagline">MRP Lot Sizing Optimizer</div>[cite: 1]
+          <div class="card-desc">Computes complete MRP records for all six standard lot sizing algorithms from Jacobs and Berry (2011): Lot-for-Lot, EOQ, POQ, Part Period Balancing, Silver-Meal, and Wagner-Whitin dynamic programming. No synthetic data.</div>[cite: 1]
+          <div class="card-tags">
+            <span class="card-tag">Wagner-Whitin</span><span class="card-tag">Silver-Meal</span>[cite: 1]
+            <span class="card-tag">EOQ</span><span class="card-tag">MRP</span>[cite: 1]
+          </div>
+        </div>
+        <div class="card-footer">
+          <div style="display:flex;gap:.4rem">
+            <span class="card-verdict cv-valid">Framework Valid</span>[cite: 1]
+            <span class="card-verdict cv-real">No Synthetic Data</span>[cite: 1]
+          </div>
+          <span class="card-arrow">View</span>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="subsection-label">Undergraduate Work · Bengaluru</div>[cite: 1]
+
+    <div class="cards-grid-2">
+
+      <a href="https://rutwiksatish.github.io/throughput/index.html" class="card card-reveal">
+        <div class="card-accent-bar ab-mfg"></div>
+        <div class="card-body">
+          <div class="card-num">07 / 08 · 2021-22</div>[cite: 1]
+          <div class="card-badge bc-mfg">Manufacturing Operations</div>[cite: 1]
+          <div class="card-name">Production Throughput Optimization</div>[cite: 1]
+          <div class="card-tagline">Chocolate Factory · VSM · Arena Simulation</div>[cite: 1]
+          <div class="card-desc">Visited a live chocolate manufacturing facility. Walked 8 stations, collected cycle time data by hand, and built an Arena simulation calibrated to the measured baseline. Repositioning one workstation produced a +22.5% throughput gain at zero capital spend.</div>[cite: 1]
+          <div class="card-tags">
+            <span class="card-tag">Arena Simulation</span><span class="card-tag">VSM</span>[cite: 1]
+            <span class="card-tag">AutoCAD</span><span class="card-tag">Live Floor Data</span>[cite: 1]
+          </div>
+        </div>
+        <div class="card-footer">
+          <div style="display:flex;gap:.4rem">
+            <span class="card-verdict cv-real">Real Floor Data</span>[cite: 1]
+            <span class="card-verdict cv-real">+22% Throughput</span>[cite: 1]
+          </div>
+          <span class="card-arrow">View</span>
+        </div>
+      </a>
+
+      <a href="https://rutwiksatish.github.io/Al7075/" class="card card-reveal">
+        <div class="card-accent-bar ab-lab"></div>
+        <div class="card-body">
+          <div class="card-num">08 / 08 · 2022-23</div>[cite: 1]
+          <div class="card-badge bc-lab">Materials Research</div>[cite: 1]
+          <div class="card-name">Al7075 Composite Fabrication</div>[cite: 1]
+          <div class="card-tagline">Stir Casting · ANOVA · Regression</div>[cite: 1]
+          <div class="card-desc">Fabricated 12 Al7075 composite specimens through a full production sequence: stir casting in a 6kW furnace, heat treatment, and machining. ANOVA and regression (R² = 0.96) identified the optimal composition of 2% silica and 5% boron fiber.</div>[cite: 1]
+          <div class="card-tags">
+            <span class="card-tag">Stir Casting</span><span class="card-tag">ANOVA</span>[cite: 1]
+            <span class="card-tag">R² = 0.96</span><span class="card-tag">DoE</span>[cite: 1]
+          </div>
+        </div>
+        <div class="card-footer">
+          <div style="display:flex;gap:.4rem">
+            <span class="card-verdict cv-real">Physical Lab Data</span>[cite: 1]
+            <span class="card-verdict cv-real">R² = 0.96</span>[cite: 1]
+          </div>
+          <span class="card-arrow">View</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<section id="skills" style="padding:0 0 5rem">
+  <div class="wrap">
+    <div class="section-rule"><span class="section-label">Core Skills</span></div>
+    <div class="skills-grid">
+      <div class="skill-cell">
+        <div class="skill-icon">📊</div>
+        <div class="skill-name">Analytics Engineering</div>[cite: 1]
+        <div class="skill-desc">Python, Pandas, Plotly, Streamlit. End-to-end from raw operational data to production-grade decision dashboards.</div>[cite: 1]
+      </div>
+      <div class="skill-cell">
+        <div class="skill-icon">🏭</div>
+        <div class="skill-name">Manufacturing Ops</div>[cite: 1]
+        <div class="skill-desc">VSM, Arena simulation, cycle time analysis, process rebalancing, stir casting, ANOVA, Design of Experiments.</div>[cite: 1]
+      </div>
+      <div class="skill-cell">
+        <div class="skill-icon">🔗</div>
+        <div class="skill-name">Supply Chain</div>[cite: 1]
+        <div class="skill-desc">MRP lot sizing, tariff modeling, supplier risk scoring, PPAP qualification, inventory analysis, SCAR workflows.</div>[cite: 1]
+      </div>
+      <div class="skill-cell">
+        <div class="skill-icon">💲</div>
+        <div class="skill-name">Pricing and CPQ</div>[cite: 1]
+        <div class="skill-desc">Partner discount tiers, margin floor enforcement, UAT validation, pricing audit trails, channel operations.</div>[cite: 1]
+      </div>
+      <div class="skill-cell">
+        <div class="skill-icon">⚙️</div>
+        <div class="skill-name">Operations Research</div>[cite: 1]
+        <div class="skill-desc">Dantzig MILP, set-covering formulation, HiGHS solver, post-solve constraint validation, takt-time demand derivation.</div>[cite: 1]
+      </div>
+      <div class="skill-cell">
+        <div class="skill-icon">🤖</div>
+        <div class="skill-name">AI Integration</div>[cite: 1]
+        <div class="skill-desc">Groq, Llama 3.1/3.3. Structured AI briefs with specific dollar impact, action ownership, and escalation thresholds.</div>[cite: 1]
+      </div>
+      <div class="skill-cell">
+        <div class="skill-icon">📋</div>
+        <div class="skill-name">Business Analysis</div>[cite: 1]
+        <div class="skill-desc">Requirements gathering, user stories, BRD documentation, data flow design, stakeholder discovery, JIRA, Confluence.</div>[cite: 1]
+      </div>
+      <div class="skill-cell">
+        <div class="skill-icon">🛡️</div>
+        <div class="skill-name">Platforms and Certs</div>[cite: 1]
+        <div class="skill-desc">SAP Analytics Cloud (4 certified badges), SAP S/4HANA self-study, Power BI, Tableau, Six Sigma DMAIC, SQL.</div>[cite: 1]
+      </div>
+      <div class="skill-cell">
+        <div class="skill-icon">🔬</div>
+        <div class="skill-name">Process Methods</div>[cite: 1]
+        <div class="skill-desc">Lean VSM, Little's Law, DMAIC Cost of Quality, RCA, FMEA, SPC, ISO 22400-2 OEE, Agile/Scrum.</div>[cite: 1]
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="padding:0 0 5rem">
+  <div class="wrap">
+    <div class="section-rule"><span class="section-label">Contact</span></div>
+    <div class="contact-block">
+      <div>
+        <div class="contact-eyebrow">Actively Interviewing / Relocating Sept 2026</div>
+        <h2 class="contact-h">Let's talk analytics<br>and operations.</h2>
+        <p class="contact-sub">Looking for roles in business analytics, supply chain operations, or pricing strategy where quantitative work drives real decisions.</p>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:satish.rutwik@gmail.com" class="contact-link">
+          <svg width="14" height="14" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          satish.rutwik@gmail.com
+        </a>
+        <a href="https://linkedin.com/in/rutwiksatish" target="_blank" class="contact-link">
+          <svg width="14" height="14" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+          linkedin.com/in/rutwiksatish
+        </a>
+        <a href="https://github.com/rutwiksatish" target="_blank" class="contact-link">
+          <svg width="14" height="14" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.07 2.91.83.1-.65.4-1.09.73-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+          github.com/rutwiksatish
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span>Rutwik Satish · MS Engineering Management · Northeastern University · 2026</span>
+    <span>8 Projects · Python · Streamlit · Plotly · Groq</span>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 70);
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.card-reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
